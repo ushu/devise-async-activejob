@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "devise-async-activejob"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["Aurélien Noce"]
   spec.email         = ["aurnoce@gmail.com"]
   spec.summary       = %q{An ActiveJob backend for devise-async.}
@@ -19,10 +19,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.1"
-  spec.add_development_dependency "rails", "~> 4.2.0rc3"
+  spec.add_development_dependency "rails", "~> 4.1"
+  spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "globalid", "~> 0.3"
+  spec.add_development_dependency "activejob", "0"
 
   spec.add_dependency "devise", "~> 3"
   spec.add_dependency "devise-async", "~> 0.9"
-  spec.add_dependency "activejob", "~> 4.2.0rc3"
 end

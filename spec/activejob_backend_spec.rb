@@ -1,26 +1,20 @@
-$:<< File.expand_path('../../lib', __FILE__)
-
-# dependencies
-require 'rails'
-require 'global_id'
-require 'devise'
-require 'devise-async'
-require 'active_job/base'
-
-# gem
-require 'devise/async/backend/active_job'
-
-# test framework
-require 'rspec'
+require 'spec_helper'
 
 AJ = Devise::Async::Backend::ActiveJob
+
 describe "Activejob" do
+  let(:user) { User.create }
+  let(:args) { [ 'perform', 'User', user.id, 'test', 'me' ] }
 
   describe ".enqueue" do
 
     it "calls .perform_later on the runner class" do
-      expect(::ActiveJob::Base).to receive(:perform_later).with('test', 'me')
-      AJ.enqueue('test', 'me')
+      if AJ::Runner.method_defined?(:perform_later)
+        expect(::ActiveJob::Base).to receive(:perform_later).with(*args)
+      else
+        expect(::ActiveJob::Base).to receive(:enqueue).with(*args)
+      end
+      AJ.enqueue(*args)
     end
 
   end # .enqueue
@@ -29,7 +23,7 @@ describe "Activejob" do
 
     it "instanciates the ActiveJob backend class" do
       expect(AJ).to receive(:new).and_return(double.as_null_object)
-      AJ.enqueue('test', 'me')
+      AJ.enqueue(*args)
     end
 
     context "once the backend class has been instanciated" do
@@ -38,8 +32,8 @@ describe "Activejob" do
 
       # this one tests the whole process
       it "calls #perform on the ActiveJob backend instance" do
-        expect(backend).to receive(:perform).with('test', 'me')
-        AJ.enqueue('test', 'me')
+        expect(backend).to receive(:perform).with(*args)
+        AJ.enqueue(*args)
       end
 
     end

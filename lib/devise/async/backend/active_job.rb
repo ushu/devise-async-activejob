@@ -4,7 +4,11 @@ module Devise
       class ActiveJob < Base
 
         def self.enqueue(*args)
-          Runner.perform_later(*args)
+          if Runner.respond_to?(:perform_later)
+            Runner.perform_later(*args)
+          else
+            Runner.enqueue(*args)
+          end
         end
 
         class Runner < ::ActiveJob::Base
