@@ -6,9 +6,8 @@ Gem::Specification.new do |spec|
   spec.name          = "devise-async-activejob"
   spec.version       = "0.0.1"
   spec.authors       = ["Aurélien Noce"]
-  spec.email         = ["aurelien.noce@imagine-app.fr"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.email         = ["aurnoce@gmail.com"]
+  spec.summary       = %q{An ActiveJob backend for devise-async.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
