@@ -38,6 +38,11 @@ end
 
 See the [docs for devise-async](https://github.com/mhfs/devise-async) for an exntensive documentation.
 
+## Compatibility
+
+This gem has been testing on `rails` 4.1 with the `activejob`(0) gem and `devise` 3.
+Rails 4.2 still poses issues with `devise-async`, which I will fix when it releases.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/devise-async-activejob/fork )
