@@ -1,3 +1,5 @@
+**This project is not actively maintained and was intended for an old version of Rails/Device, USE AT YOU OWN RISKS**
+
 # A devise-active backend for ActiveJob
 
 Adds an `activejob` backend to [devise-async](https://github.com/mhfs/devise-async).
